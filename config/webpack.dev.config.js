@@ -1,4 +1,8 @@
 const root = require('app-root-path').path;
+const webpack = require('webpack');
+
+console.log("NODE_ENV:", process.env.NODE_ENV)
+
 module.exports = {
     entry: `${root}/src/app.ts`,
     target: 'node',
@@ -25,13 +29,16 @@ module.exports = {
         rules: [{
             // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
             test: /\.tsx?$/,
-            use: [
-                {
-                    loader: 'ts-loader',
-                }
-            ]
+            use: [{
+                loader: 'ts-loader',
+            }]
         }]
     },
     watch: true,
-    devtool: 'source-map'
+    devtool: 'source-map',
+    plugins: [
+        new webpack.DefinePlugin({
+            'env': JSON.stringify(process.env.NODE_ENV)
+        })
+    ]
 };
