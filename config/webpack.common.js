@@ -1,7 +1,8 @@
 const root = require('app-root-path').path;
 const webpack = require('webpack');
 
-console.log("NODE_ENV:", process.env.NODE_ENV)
+// 這邊展示 所有 cross-env 的參數
+console.log("NODE_ENV :", process.env.NODE_ENV)
 
 module.exports = {
     entry: `${root}/src/app.ts`,
@@ -34,11 +35,12 @@ module.exports = {
             }]
         }]
     },
-    watch: true,
-    devtool: 'source-map',
     plugins: [
         new webpack.DefinePlugin({
             'env': JSON.stringify(process.env.NODE_ENV)
         })
     ]
 };
+
+// 教學
+// https://pjchender.github.io/2018/05/17/webpack-學習筆記（webpack-note）/

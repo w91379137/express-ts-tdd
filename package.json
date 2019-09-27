@@ -2,11 +2,12 @@
   "name": "express-ts-tdd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "start": "npm run watch | npm run serve",
-    "watch": "cross-env NODE_ENV=dev webpack --config config/webpack.dev.config.js",
-    "serve": "node_modules/.bin/nodemon dist/app.js"
+    "watch": "cross-env NODE_ENV=dev webpack --config config/webpack.dev.js",
+    "serve": "node_modules/.bin/nodemon dist/app.js",
+    "build": "cross-env NODE_ENV=prod webpack --config config/webpack.prod.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,8 @@
     "ts-loader": "^4.4.2",
     "typescript": "^3.6.3",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "cross-env": "^6.0.0"
