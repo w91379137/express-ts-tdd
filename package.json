@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run watch | npm run serve",
     "watch": "cross-env NODE_ENV=dev webpack --config config/webpack.dev.js",
-    "serve": "node_modules/.bin/nodemon dist/app.js",
+    "serve": "DEBUG='app:*:c' DEBUG_COLORS=true DEBUG_FD=1 node_modules/.bin/nodemon dist/app.js",
     "build": "cross-env NODE_ENV=prod webpack --config config/webpack.prod.js"
   },
   "author": "",
@@ -22,6 +22,9 @@
     "source-map-support": "^0.5.13"
   },
   "dependencies": {
-    "cross-env": "^6.0.0"
+    "@types/node": "^12.7.8",
+    "cross-env": "^6.0.0",
+    "debug": "^4.1.1",
+    "supports-color": "^7.1.0"
   }
 }
