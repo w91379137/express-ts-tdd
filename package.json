@@ -25,6 +25,7 @@
     "@types/node": "^12.7.8",
     "cross-env": "^6.0.0",
     "debug": "^4.1.1",
+    "fs-js": "^1.0.6",
     "supports-color": "^7.1.0"
   }
 }
