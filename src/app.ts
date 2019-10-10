@@ -1,36 +1,45 @@
 
 require('source-map-support').install();
 
-let debug_AC = require('debug')('app:a:c')
-let debug_BC = require('debug')('app:b:c')
-let debug_AB = require('debug')('app:a:b')
+let debug = require('debug')('app:main')
 
-const fs = require('fs-js');
+//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
+// server 屬性建立
 
-setTimeout(() => {
-    debug_AC('Build env_ac:' + env);
-    debug_BC('Build env_bc:' + env);
-    debug_AB('Build env_ab:' + env);
-}, 100);
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as cookieParser from 'cookie-parser';
+import * as cors from 'cors';
 
-function write(data) {
-    fs.appendFile('log/data.txt', data + '\n', (err) => {
-        if (err) throw err;
-    });
+const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(cookieParser());
+
+const corsOptions = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+
+// Middleware 中介軟體
+function loggerMiddleware(req: express.Request, res: express.Response, next) {
+    // console.log(`Method:${req.method} Path:${req.path} Body:${JSON.stringify(req.body)}`);
+    next();
 }
+app.use(loggerMiddleware);
 
-write('test');
+//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 
-// class Foo {
-//     constructor() { this.bar(); }
-//     bar() { throw new Error('this is a demo'); }
-// }
-// new Foo();
+// start the Express server
+const port = 5000;
+const listen = app.listen(port, () => {
+    debug(`server is running on port ${listen.address()['port'] || listen.address().toString()}`);
+});
 
-// 這樣不行
-// throw new Error('Test');
-
-// 這個可以
-// setTimeout(() => {
-//     throw new Error('Test');
-// }, 1000);
+//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
