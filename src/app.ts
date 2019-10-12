@@ -35,6 +35,27 @@ function loggerMiddleware(req: express.Request, res: express.Response, next) {
 app.use(loggerMiddleware);
 
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
+// api route 建立
+
+app.get('/', async(req, res) => {
+
+    res.status(200).send({
+        success: true,
+        result: 'result',
+    });
+})
+
+app.post('/', async(req, res) => {
+
+    let body = req.body
+
+    res.status(200).send({
+        success: true,
+        result: body,
+    });
+})
+
+//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 
 // start the Express server
 const port = 5000;
@@ -43,3 +64,5 @@ const listen = app.listen(port, () => {
 });
 
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
+
+module.exports = app
