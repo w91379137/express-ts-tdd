@@ -12,7 +12,7 @@ import { RootController } from './server/controller/root-controller';
 
 // Middleware 中介軟體
 function loggerMiddleware(req: express.Request, res: express.Response, next) {
-    console.log(`Method:${req.method} Path:${req.path} Body:${JSON.stringify(req.body)}`);
+    debug(`Method:${req.method} Path:${req.path} Body:${JSON.stringify(req.body)}`);
     next();
 }
 

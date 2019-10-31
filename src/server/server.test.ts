@@ -1,20 +1,30 @@
 import { Server } from "./server";
 
+let server: Server
+let port = 10000
+
 describe('Test Server', () => {
 
-    test("Port", async (done) => {
+    beforeAll(() => {
 
-        let port = 10000
-        let server = new Server({
+        server = new Server({
             port: port,
             controllers: [],
             middlewares: [],
         })
+        return server.start()
+    })
 
-        server.start().then(() => {
-            expect(server.listen.address()['port']).toBe(port);
-            done()
-        })
+    afterAll(() => {
+        server.listen.close()
+    })
+
+    // ====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
+
+    test("Port", async (done) => {
+
+        expect(server.listen.address()['port']).toBe(port);
+        done()
 
     })
 
