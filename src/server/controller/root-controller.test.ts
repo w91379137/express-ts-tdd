@@ -22,7 +22,7 @@ describe('Test RootController', () => {
 
     // ====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 
-    test("GET Request", (done) => {
+    test("GET", (done) => {
 
         request(server.app)
             .get("/")
@@ -34,7 +34,7 @@ describe('Test RootController', () => {
             })
     })
 
-    test("POST Request", (done) => {
+    test("POST", (done) => {
 
         let testBody = { name: 'test' };
 

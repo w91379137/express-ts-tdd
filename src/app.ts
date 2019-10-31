@@ -7,62 +7,24 @@ let debug = require('debug')('app:main')
 // server 屬性建立
 
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
-import * as cookieParser from 'cookie-parser';
-import * as cors from 'cors';
-
-const app = express();
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-
-app.use(cookieParser());
-
-const corsOptions = {
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    allowedHeaders: ['Content-Type', 'Authorization'],
-};
-app.use(cors(corsOptions));
+import { Server } from './server/server';
+import { RootController } from './server/controller/root-controller';
 
 // Middleware 中介軟體
 function loggerMiddleware(req: express.Request, res: express.Response, next) {
-    // console.log(`Method:${req.method} Path:${req.path} Body:${JSON.stringify(req.body)}`);
+    console.log(`Method:${req.method} Path:${req.path} Body:${JSON.stringify(req.body)}`);
     next();
 }
-app.use(loggerMiddleware);
 
-//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
-// api route 建立
-
-app.get('/', async(req, res) => {
-
-    res.status(200).send({
-        success: true,
-        result: 'result',
-    });
-})
-
-app.post('/', async(req, res) => {
-
-    let body = req.body
-
-    res.status(200).send({
-        success: true,
-        result: body,
-    });
-})
-
-//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
-
-// start the Express server
 const port = 5000;
-const listen = app.listen(port, () => {
-    debug(`server is running on port ${listen.address()['port'] || listen.address().toString()}`);
-});
+let server = new Server({
+    port: port,
+    controllers: [
+        new RootController()
+    ],
+    middlewares: [
+        loggerMiddleware
+    ],
+})
 
-//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
-
-module.exports = app
+server.start()
