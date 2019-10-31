@@ -6,13 +6,13 @@ import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
 import * as cors from 'cors';
 
-import { controller } from './controller/controller';
+import { Controller } from './controller/controller';
 
 export interface ServerSetting {
 
     port: number
 
-    controllers: controller[]
+    controllers: Controller[]
     middlewares: ((req: express.Request, res: express.Response, next) => void)[]
 
 }
@@ -56,7 +56,7 @@ export class Server {
 
     }
 
-    start() {
+    start(): Promise<void> {
 
         return new Promise((resolve, _) => {
             this.listen = this.app.listen(this.setting.port, () => {
