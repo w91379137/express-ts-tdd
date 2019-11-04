@@ -4,6 +4,13 @@ require('source-map-support').install();
 let debug = require('debug')('app:main')
 
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
+// 本地服務建立
+
+import { storage as localStorage } from './service/localstorage';
+localStorage.setItem('myFirstKey', 'myFirstValue1');
+console.log(localStorage.getItem('myFirstKey'));
+
+//====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 // server 屬性建立
 
 import * as express from 'express';
