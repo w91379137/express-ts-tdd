@@ -7,9 +7,19 @@ let debug = require('debug')('app:main')
 // 本地服務建立
 
 import { GlobalUse } from './global-use';
-import { storage } from './service/localstorage';
 
+import { storage } from './service/localstorage';
 GlobalUse.myStorage = storage
+// GlobalUse.myStorage.setItem('time', (new Date()).toString());
+// GlobalUse.myStorage.getItem('time'));
+
+import { append } from './service/append';
+GlobalUse.append = append
+// GlobalUse.append("data/data.txt", "test")
+
+import { log } from './service/log';
+GlobalUse.log = log
+// GlobalUse.log("test")
 
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 // server 屬性建立
