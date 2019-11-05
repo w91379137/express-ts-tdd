@@ -6,9 +6,10 @@ let debug = require('debug')('app:main')
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 // 本地服務建立
 
-import { storage as localStorage } from './service/localstorage';
-localStorage.setItem('myFirstKey', 'myFirstValue1');
-console.log(localStorage.getItem('myFirstKey'));
+import { GlobalUse } from './global-use';
+import { storage } from './service/localstorage';
+
+GlobalUse.myStorage = storage
 
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 // server 屬性建立
