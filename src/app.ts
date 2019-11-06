@@ -21,6 +21,9 @@ import { log } from './service/log';
 GlobalUse.log = log
 // GlobalUse.log("test")
 
+import { terminal } from './service/child';
+debug(terminal)
+
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 // server 屬性建立
 
