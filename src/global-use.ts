@@ -13,8 +13,8 @@ export var GlobalUse = {
         getItem: (a) => {},
     } as NodeStorage,
 
-    append: (a: string, b: string) => {},
+    append: (path: string, value: string) => {},
 
-    log: (a: string) => {},
+    log: (value: string) => {},
 
 }

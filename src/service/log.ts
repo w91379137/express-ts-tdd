@@ -1,16 +1,36 @@
 import { append } from './append';
 
-function yyyymmddTime() {
-    let now = new Date()
-    var mm = now.getMonth() + 1;
-    var dd = now.getDate();
+function yyyymmddTime(): string {
+    const now = new Date()
+    const yyyy = now.getFullYear()
+    const mm = now.getMonth() + 1
+    const dd = now.getDate()
 
-    return [now.getFullYear(),
-    (mm > 9 ? '' : '0') + mm,
-    (dd > 9 ? '' : '0') + dd
+    return [
+        yyyy,
+        ('0' + mm).slice(-2),
+        ('0' + dd).slice(-2),
+    ].join('')
+}
+
+function hhmmsszzzTime(): string {
+    const now = new Date()
+    const hh = now.getHours()
+    const mm = now.getMinutes()
+    const ss = now.getSeconds()
+    const zzz = now.getMilliseconds()
+
+    return [
+        ('0' + hh).slice(-2),
+        ':',
+        ('0' + mm).slice(-2),
+        ':',
+        ('0' + ss).slice(-2),
+        ' ',
+        ('00' + zzz).slice(-3),
     ].join('');
 }
 
 export function log(value: any) {
-    append(`log/${yyyymmddTime()}.txt`, value)
+    append(`log/${yyyymmddTime()}.txt`, `${hhmmsszzzTime()} ${value}`)
 }

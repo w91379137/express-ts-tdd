@@ -1,5 +1,5 @@
 
-let debug = require('debug')('app:server');
+let debug = require('debug')('app:append');
 const fsjs = require('fs-js');
 const fs = require('fs');
 
