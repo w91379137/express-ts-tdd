@@ -9,8 +9,8 @@ interface NodeStorage {
 
 export var GlobalUse = {
     myStorage: {
-        setItem: (a, b) => {},
-        getItem: (a) => {},
+        setItem: (key, value) => {},
+        getItem: (key) => {},
     } as NodeStorage,
 
     append: (path: string, value: string) => {},
