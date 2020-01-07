@@ -7,9 +7,6 @@ console.log("NODE_ENV :", process.env.NODE_ENV)
 module.exports = {
     entry: `${root}/src/app.ts`,
     target: 'node',
-    externals: [
-        /^[a-z\-0-9]+$/ // Ignore node_modules folder
-    ],
     output: {
         filename: 'app.js', // output file
         path: `${root}/dist`,
