@@ -20,3 +20,20 @@ export var terminal = 1;
 // 可以 知道哪幾個 沒有死掉
 // 指定關閉 子程式
  
+
+
+
+// sudo
+// https://www.npmjs.com/package/sudo-js
+
+// 包裝 cmd
+// https://www.npmjs.com/package/node-cmd
+
+
+// visudo
+// 其實可以更改 sudo 的範圍
+// https://ithelp.ithome.com.tw/articles/10053821
+// https://blog.csdn.net/Field_Yang/article/details/51547804
+// 直接打 visudo 來新增 超級使用者
+// pi ALL=(ALL) NOPASSWD: ALL
+// www-data ALL=(ALL) NOPASSWD: ALL
