@@ -11,7 +11,7 @@ export async function ping(
             // if (error || stderr) {
             //     console.log(error, stderr)
             // }
-            resolve(stdout)
+            resolve(stdout || '')
         })
     })
 
@@ -24,6 +24,17 @@ export async function pingTest(
 ): Promise<boolean> {
 
     let result = await ping(ip, timeout) as string
+
     // 判斷字串
-    return result.includes('icmp_seq')
+    let resultArr = result.split("/n")
+        // 正常的
+        .filter(str => str.includes('icmp_seq'))
+        .filter(str => str.includes('ttl'))
+        .filter(str => str.includes('time'))
+
+        //不正常含有
+        .filter(str => !str.includes('Unreachable'))
+
+    // console.log(resultArr)
+    return resultArr.length > 0
 }

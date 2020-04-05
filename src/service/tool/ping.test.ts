@@ -12,7 +12,7 @@ describe('Test PingTest', () => {
     })
 
     test("Timeout", async (done) => {
-        let result = await pingTest('8.8.8.8',0)
+        let result = await pingTest('8.8.8.8', 1)
         expect(result).toBe(false)
         done()
     })
