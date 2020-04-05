@@ -19,23 +19,32 @@ export class DebugController implements Controller {
     }
 }
 
-function htmlRelaod(obj: any) {
+function htmlRelaod(obj: any, time: number = 0) {
     let content = JSON.stringify(obj, null, 2)
-    return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <script>
-    setTimeout(() => {
-        location.reload();
-    }, 5 * 1000)
-    </script>
-</head>
-<body>
-<plaintext>${content}
-`
+    let reloadScript = ''
+    if (time > 0) {
+        reloadScript = `
+        setTimeout(() => {
+            location.reload();
+        }, ${time})
+        `
+    }
+
+    return `
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Debug</title>
+            <script>
+                ${reloadScript}
+            </script>
+        </head>
+
+        <body>
+        <plaintext>${content}
+        `
 }
