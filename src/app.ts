@@ -3,6 +3,9 @@ require('source-map-support').install();
 
 let debug = require('debug')('app:main')
 
+debug(`env:${env}`)
+debug(`git_hash:${git_hash}`)
+
 //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
 // local 服務建立
 
@@ -33,7 +36,7 @@ async function run() {
     GlobalUse.log = log
     // GlobalUse.log("test")
 
-    debug(terminal)
+    // debug(terminal)
 
     //====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====.====
     // server 屬性建立

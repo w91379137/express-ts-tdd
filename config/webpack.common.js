@@ -4,6 +4,12 @@ const webpack = require('webpack');
 // 這邊展示 所有 cross-env 的參數
 console.log("NODE_ENV :", process.env.NODE_ENV)
 
+let commitHash = require('child_process')
+    .execSync('git rev-parse --short HEAD')
+    .toString().replace('\n', '');
+
+console.log("commitHash :", commitHash)
+
 module.exports = {
     entry: `${root}/src/app.ts`,
     target: 'node',
@@ -34,7 +40,8 @@ module.exports = {
     },
     plugins: [
         new webpack.DefinePlugin({
-            'env': JSON.stringify(process.env.NODE_ENV)
+            'env': JSON.stringify(process.env.NODE_ENV),
+            'git_hash': JSON.stringify(commitHash),
         })
     ]
 };
