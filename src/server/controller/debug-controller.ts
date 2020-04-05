@@ -15,11 +15,27 @@ export class DebugController implements Controller {
     }
 
     get = async (req, res) => {
-        res.status(200).send(htmlShow({a: 1}))
+        res.status(200).send(htmlRelaod({ a: 1 }))
     }
 }
 
-function htmlShow(obj: any) {
+function htmlRelaod(obj: any) {
+    let content = JSON.stringify(obj, null, 2)
+    return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-    return "<plaintext>" + JSON.stringify(obj, null, 2) + '\n'
+    <script>
+    setTimeout(() => {
+        location.reload();
+    }, 5 * 1000)
+    </script>
+</head>
+<body>
+<plaintext>${content}
+`
 }
