@@ -21,6 +21,7 @@ import { terminal } from './service/child';
 import * as express from 'express';
 import { Server } from './server/server';
 import { RootController } from './server/controller/root-controller';
+import { DebugController } from './server/controller/debug-controller';
 
 async function run() {
 
@@ -52,6 +53,7 @@ async function run() {
         port: port,
         controllers: [
             new RootController(),
+            new DebugController(),
         ],
         middlewares: [
             loggerMiddleware
