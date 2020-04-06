@@ -6,6 +6,7 @@ import { GlobalUse } from "../../global-use";
 /*
 http://localhost:5000/debug/?path=example
 http://localhost:5000/debug/?path=example_obj
+
 http://localhost:5000/debug/?path=example_arr
 http://localhost:5000/debug/?path=example_arr_1
  */
@@ -54,7 +55,14 @@ export function pathParse(path: string): any[] {
 }
 
 function htmlRelaod(obj: any, time: number = 0) {
-    let content = JSON.stringify(obj, null, 2)
+    let result = {} as any
+    if (!!obj && (typeof obj.debugLog === 'function')) {
+        result.debugLog = obj.debugLog()
+    }
+    if (!!obj) {
+        result.raw = obj
+    }
+    let content = JSON.stringify(result, null, 2)
 
     let reloadScript = ''
     if (time > 0) {
@@ -86,7 +94,14 @@ function htmlRelaod(obj: any, time: number = 0) {
 function debugExample() {
     return {
         obj: {
-            hello: 'debug'
+            hello: 'debug',
+            debugLog: () => {
+                let info = {
+                    time: new Date(),
+                    msg: 'test'
+                }
+                return info
+            }
         },
         arr: [
             {
