@@ -6,6 +6,7 @@ import { GlobalUse } from "../../global-use";
 /*
 http://localhost:5000/debug/?path=example
 http://localhost:5000/debug/?path=example_obj
+http://localhost:5000/debug/?path=example_obj&t=2000
 
 http://localhost:5000/debug/?path=example_arr
 http://localhost:5000/debug/?path=example_arr_1
