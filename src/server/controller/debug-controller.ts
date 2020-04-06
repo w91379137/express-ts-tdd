@@ -23,6 +23,7 @@ export class DebugController implements Controller {
     get = async (req, res) => {
 
         let path = (req.query.path || '') as string
+        let time = parseInt(req.query.t) || 0 as number
         let keyArr = pathParse(path)
 
         let obj = GlobalUse as any
@@ -41,7 +42,7 @@ export class DebugController implements Controller {
             }
         }
 
-        res.status(200).send(htmlRelaod(obj))
+        res.status(200).send(htmlRelaod(obj, time))
     }
 }
 
