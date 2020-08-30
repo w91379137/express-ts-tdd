@@ -1,12 +1,17 @@
 import * as request from "supertest";
 import { Server } from "../server";
 import { RootController } from './root-controller';
+import { GlobalUse } from "../../global-use";
 
 let server: Server
 
 describe('Test RootController', () => {
 
     beforeAll(() => {
+
+        // 為了測試 GlobalUse 讓測試失敗
+        // GlobalUse.myStorage = undefined
+
         let port = 10001
         server = new Server({
             port: port,
